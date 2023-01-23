@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-base-200/20">
-        <section className="container mx-auto flex min-h-screen flex-col-reverse justify-between  py-10 lg:flex-row lg:px-10">
+        <section className="container mx-auto flex min-h-screen flex-col-reverse justify-between  py-16 lg:flex-row lg:px-10">
           {/* text */}
           <div className="flex flex-1 flex-col  justify-center   px-10 text-center lg:px-0 lg:text-left">
             <div className="text-5xl font-bold leading-none md:text-6xl">

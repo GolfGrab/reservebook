@@ -1,7 +1,7 @@
 import { type AppType } from "next/dist/shared/lib/utils";
-import DevViewport from "../common/components/elements/DevViewport";
-import TopNav from "../modules/navigation/TopNav";
 
+import DevViewport from "../modules/dev/components/DevViewport";
+import TopNav from "../modules/navigation/components/TopNav";
 import "../styles/globals.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {

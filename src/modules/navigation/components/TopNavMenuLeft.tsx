@@ -1,26 +1,25 @@
 import Link from "next/link";
 import React from "react";
+import { type MenuItem } from "../types/MenuItem";
 
-type MenuItem = {
-  name: string;
-  link: string;
-};
+const menuItems: MenuItem[] = [
+  { name: "Flight + Hotel", link: "#" },
+  { name: "Hotels & Homes", link: "#" },
+  { name: "Flights", link: "#" },
+  { name: "Coupons & Deals", link: "#" },
+  { name: "Apartments", link: "#" },
+  { name: "Activities", link: "#" },
+  { name: "Airport transfers", link: "#" },
+  { name: "Car rentals", link: "#" },
+];
 
 type TopNavMenuLeftProps = {
   numberOfShownItems?: number;
 };
 
 const TopNavMenuLeft: React.FC<TopNavMenuLeftProps> = ({
-  numberOfShownItems = 6,
+  numberOfShownItems = menuItems.length,
 }) => {
-  const menuItems: MenuItem[] = [
-    { name: "Item 1", link: "#" },
-    { name: "Item 2", link: "#" },
-    { name: "Item 3", link: "#" },
-    { name: "Item 4", link: "#" },
-    { name: "Item 5", link: "#" },
-    { name: "Item 6", link: "#" },
-  ];
   return (
     <ul className="menu menu-horizontal px-1">
       {menuItems.slice(0, numberOfShownItems).map((item) => (
