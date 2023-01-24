@@ -1,4 +1,3 @@
-import React from "react";
 import TopNavMenuLeft from "./TopNavMenuLeft";
 
 const TopNavMenuLeftWrapped = () => {
@@ -16,13 +15,13 @@ const TopNavMenuLeftWrapped = () => {
       <nav className="hidden flex-none lg:block xl:hidden">
         <TopNavMenuLeft numberOfShownItems={4} />
       </nav>
-      {/* xl show 5   */}
+      {/* xl show 4   */}
       <nav className="hidden flex-none xl:block 2xl:hidden">
-        <TopNavMenuLeft numberOfShownItems={5} />
+        <TopNavMenuLeft numberOfShownItems={4} />
       </nav>
-      {/* 2xl show 6   */}
+      {/* 2xl show 5   */}
       <nav className="hidden flex-none 2xl:block 3xl:hidden">
-        <TopNavMenuLeft numberOfShownItems={6} />
+        <TopNavMenuLeft numberOfShownItems={5} />
       </nav>
       {/* 3xl show all   */}
       <nav className="hidden flex-none 3xl:block">
