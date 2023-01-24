@@ -1,14 +1,13 @@
 import type { UseFormRegister } from "react-hook-form/dist/types";
-import type { z } from "zod";
+import type { SearchType } from "../types/SearchTypes";
 import FilterBlock from "./FilterBlock";
-import type { schema } from "./SearchBar";
 
 type FilterBlockListProps = {
   title: string;
   labels: React.ReactNode[] | string[];
-  valueKey: keyof z.infer<typeof schema>;
+  valueKey: keyof SearchType;
   values: string[] | number[];
-  register: UseFormRegister<z.infer<typeof schema>>;
+  register: UseFormRegister<SearchType>;
 };
 
 const FilterBlockList: React.FC<FilterBlockListProps> = ({

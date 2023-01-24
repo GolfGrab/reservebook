@@ -1,3 +1,4 @@
+import Rating from "../../common/components/Rating";
 import {
   bedOptions,
   paymentOptions,
@@ -5,52 +6,28 @@ import {
   roomAmenityOptions,
   starOptions,
   tagOptions,
-} from "../types/Hotel";
+} from "../../hotel/types/HotelType";
 import FilterBlockList from "./FilterBlockList";
-import Rating from "./Rating";
 import SearchOnMap from "./SearchOnMap";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import type { useForm } from "react-hook-form";
 
-export const schema = z.object({
-  name: z.string().min(2).optional(),
-  maxCost: z.number().min(0).optional(),
-  propertyType: z.array(z.string()).optional(),
-  bedType: z.array(z.string()).optional(),
-  paymentType: z.array(z.string()).optional(),
-  roomAmenities: z.array(z.string()).optional(),
-  tags: z.array(z.string()).optional(),
-  star: z.array(z.number()).optional(),
-});
+type SearchBarProps = {
+  register: ReturnType<typeof useForm>["register"];
+  searchOption: ReturnType<typeof useForm>["watch"];
+};
 
-const SearchBar = () => {
-  const defaultSearch = {
-    name: "",
-    maxCost: 0,
-    propertyType: [],
-    bedType: [],
-    paymentType: [],
-    roomAmenities: [],
-    tags: [],
-    star: [],
-  };
-  const { register, watch } = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
-    defaultValues: defaultSearch,
-  });
-
+const SearchBar: React.FC<SearchBarProps> = ({ register, searchOption }) => {
   return (
     <>
-      <pre>{JSON.stringify(watch(), null, 2)}</pre>
+      <pre className="hidden">{JSON.stringify(searchOption(), null, 2)}</pre>
       <SearchOnMap />
       <div className="form-control">
         <div className="input-group">
           <input
             type="text"
             placeholder="Search…"
-            className="input-bordered input"
+            className="input-bordered input w-full"
             {...register("name")}
           />
           <button className="btn-primary btn-square btn">
@@ -74,14 +51,14 @@ const SearchBar = () => {
       <input
         type="range"
         min="0"
-        max="100000"
+        max="10000"
         className="range range-primary"
         {...register("maxCost")}
       />
       <div className="flex items-center gap-2">
         MAX
         <span className=" font-bold">
-          {watch("maxCost") ? watch("maxCost") : 0}
+          {searchOption("maxCost") ? searchOption("maxCost") : 0}
         </span>
         THB
       </div>

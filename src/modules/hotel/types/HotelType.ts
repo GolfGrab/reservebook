@@ -1,3 +1,26 @@
+import { z } from "zod";
+
+export const hotelsSchema = z.array(
+  z.object({
+    id: z.string(),
+    name: z.string(),
+    starRating: z.number().int().min(1).max(5),
+    guestRating: z.number().min(0).max(10),
+    reviewCount: z.number().int().min(0),
+    location: z.string(),
+    price: z.number().min(0),
+    discountPercentage: z.number().min(0).max(100),
+    image: z.string(),
+    tags: z.array(z.string()),
+    propertyType: z.string(),
+    distanceKmFromCenter: z.number().min(0),
+    amenities: z.array(z.string()),
+    paymentTypes: z.array(z.string()),
+    beds: z.array(z.string()),
+    rooms: z.number().int().min(0),
+  })
+);
+
 export type Hotel = {
   id: string;
   name: string;
@@ -16,8 +39,6 @@ export type Hotel = {
   beds: BedType[];
   rooms: number;
 };
-
-export type HotelList = Hotel[];
 
 export const propertyOptions = [
   "apartment",

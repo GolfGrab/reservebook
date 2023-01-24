@@ -1,7 +1,7 @@
 import Image from "next/image";
-import type { Hotel } from "../types/Hotel";
-import { ratingOptions } from "../types/Hotel";
-import Rating from "./Rating";
+import Rating from "../../common/components/Rating";
+import type { Hotel } from "../types/HotelType";
+import { ratingOptions } from "../types/HotelType";
 import TagList from "./TagList";
 
 type HotelCardProps = {
@@ -10,12 +10,12 @@ type HotelCardProps = {
 
 const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
   return (
-    <div className="card card-side h-[210px] bg-base-100 shadow-xl">
-      <figure className=" flex-[2]">
+    <div className="card card-side h-[300px] bg-base-100 shadow-xl md:h-[210px]">
+      <figure className="flex-[2] ">
         <Image
           src={hotel?.image ?? "https://placeimg.com/200/200 "}
           alt={hotel?.name ? hotel?.name + " image" : "hotel image"}
-          className="h-[210px] w-auto max-w-[300px] object-cover "
+          className="h-full w-full object-cover"
           width={300}
           height={210}
         />
@@ -27,6 +27,32 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
           <p> 📌 {hotel?.location ?? "hotel location"}</p>
         </div>
         <TagList tags={hotel?.tags ?? ["tag1", "tag2", "tag3"]} />
+        <div className="card-actions items-center justify-end md:hidden">
+          {/* discount */}
+          <div className=" items-center bg-red-500 px-2 text-white">
+            {hotel?.discountPercentage ? (
+              <p>{hotel?.discountPercentage}% OFF</p>
+            ) : (
+              <p>only {hotel?.rooms} left</p>
+            )}
+          </div>
+
+          {/* old price */}
+
+          {hotel?.discountPercentage ? (
+            <p className="text-sm line-through decoration-red-700">
+              ฿{" "}
+              {Math.round(hotel?.price * (1 + hotel?.discountPercentage / 100))}
+            </p>
+          ) : null}
+          <p className=" text-lg font-bold text-red-600">
+            ฿ {Math.round(hotel?.price) ?? 2000}
+          </p>
+
+          <button className="btn-primary btn  w-full text-sm normal-case">
+            Select room
+          </button>
+        </div>
       </div>
       <div className="card-body hidden flex-[1.5] items-end justify-between border-l-2 p-2 md:flex">
         <div className="flex items-center gap-4">
@@ -42,13 +68,13 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
         {/* discount */}
         <div className="flex flex-col items-center bg-red-500 px-2 text-white">
           {hotel?.discountPercentage ? (
-            <p>{hotel?.discountPercentage}% OFF TODAY</p>
+            <p>{hotel?.discountPercentage}% OFF</p>
           ) : (
             <p>only {hotel?.rooms} left</p>
           )}
         </div>
-        {/* old price */}
 
+        {/* old price */}
         <div className="flex flex-col items-center">
           {hotel?.discountPercentage ? (
             <p className="text-sm line-through decoration-red-700">

@@ -1,4 +1,4 @@
-import type { Hotel } from "../types/Hotel";
+import type { Hotel } from "../../hotel/types/HotelType";
 
 type RatingProps = {
   rating: Hotel["starRating"];

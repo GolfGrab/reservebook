@@ -1,4 +1,12 @@
-const SortMenu = () => {
+import type { Dispatch, SetStateAction } from "react";
+import { sortFunctions } from "../services/sortFunction";
+
+type SortMenuProps = {
+  sortfunc: number;
+  setSortfunc: Dispatch<SetStateAction<number>>;
+};
+
+const SortMenu: React.FC<SortMenuProps> = ({ sortfunc, setSortfunc }) => {
   return (
     <>
       <ul className="menu rounded-box menu-compact  menu-horizontal w-full border-2 border-base-300 bg-base-100  lg:menu-normal ">
@@ -7,26 +15,19 @@ const SortMenu = () => {
             Sort
           </a>
         </li>
-        <li className="flex-1">
-          <a className="w-full justify-center border-l-2 border-base-300">
-            Best match
-          </a>
-        </li>
-        <li className="flex-1">
-          <a className="w-full justify-center border-l-2 border-base-300">
-            Top reviewed
-          </a>
-        </li>
-        <li className="flex-1">
-          <a className="w-full justify-center border-l-2 border-base-300">
-            Lowest price first
-          </a>
-        </li>
-        <li className="flex-1">
-          <a className="w-full justify-center border-l-2 border-base-300">
-            Hot Deals!
-          </a>
-        </li>
+        {sortFunctions.map((sort, idx) => (
+          <li key={sort.name} className="flex-1">
+            <a
+              className={
+                "w-full justify-center border-l-2 border-base-300" +
+                (sortfunc === idx ? " btn-primary text-primary-content" : "")
+              }
+              onClick={() => setSortfunc(idx)}
+            >
+              {sort.name}
+            </a>
+          </li>
+        ))}
       </ul>
     </>
   );
