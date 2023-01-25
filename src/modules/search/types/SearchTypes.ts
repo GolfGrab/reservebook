@@ -11,7 +11,6 @@ export const searchSchema = z.object({
   star: z.array(z.string()).optional(),
 });
 
-// and not undefined
 export type SearchType = z.infer<typeof searchSchema>;
 
 export const defaultSearch = {
