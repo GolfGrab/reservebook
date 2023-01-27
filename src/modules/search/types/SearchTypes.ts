@@ -15,7 +15,7 @@ export type SearchType = z.infer<typeof searchSchema>;
 
 export const defaultSearch = {
   name: "",
-  maxCost: 10000,
+  maxCost: 1000,
   propertyType: [],
   bedType: [],
   paymentType: [],

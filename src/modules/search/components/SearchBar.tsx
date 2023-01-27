@@ -51,7 +51,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ register, searchOption }) => {
       <input
         type="range"
         min="0"
-        max="10000"
+        max="1000"
+        step="10"
         className="range range-primary"
         {...register("maxCost")}
       />
